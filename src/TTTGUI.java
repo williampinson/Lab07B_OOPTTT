@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class TTTGUI extends JFrame {
 
@@ -77,5 +78,31 @@ public class TTTGUI extends JFrame {
         });
         Object[] options = {yesButton, noButton};
         JOptionPane.showOptionDialog(this, message, "Game Over", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+    }
+
+    @Override
+    public String toString() {
+        return "TTTGUI{" +
+                "ROW=" + ROW +
+                ", COL=" + COL +
+                ", mainPanel=" + mainPanel +
+                ", gamePanel=" + gamePanel +
+                ", controlPanel=" + controlPanel +
+                ", quitBtn=" + quitBtn +
+                ", game=" + game +
+                ", board=" + board +
+                "} " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TTTGUI tttgui = (TTTGUI) o;
+        return ROW == tttgui.ROW && COL == tttgui.COL && Objects.equals(mainPanel, tttgui.mainPanel) && Objects.equals(gamePanel, tttgui.gamePanel) && Objects.equals(controlPanel, tttgui.controlPanel) && Objects.equals(quitBtn, tttgui.quitBtn) && Objects.equals(game, tttgui.game) && Objects.equals(board, tttgui.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ROW, COL, mainPanel, gamePanel, controlPanel, quitBtn, game, board);
     }
 }

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Objects;
 
 public class Game {
 
@@ -181,5 +182,32 @@ public class Game {
     }
     private void showGUI() {
         frame = new TTTGUI(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "ROW=" + ROW +
+                ", COL=" + COL +
+                ", frame=" + frame +
+                ", player='" + player + '\'' +
+                ", MOVES_FOR_WIN=" + MOVES_FOR_WIN +
+                ", MOVES_FOR_TIE=" + MOVES_FOR_TIE +
+                ", moveCnt=" + moveCnt +
+                ", gameOver=" + gameOver +
+                ", gameOverMessage='" + gameOverMessage + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return ROW == game.ROW && COL == game.COL && MOVES_FOR_WIN == game.MOVES_FOR_WIN && MOVES_FOR_TIE == game.MOVES_FOR_TIE && moveCnt == game.moveCnt && gameOver == game.gameOver && Objects.equals(frame, game.frame) && Objects.equals(player, game.player) && Objects.equals(gameOverMessage, game.gameOverMessage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ROW, COL, frame, player, MOVES_FOR_WIN, MOVES_FOR_TIE, moveCnt, gameOver, gameOverMessage);
     }
 }

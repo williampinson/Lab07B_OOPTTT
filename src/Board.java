@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Board {
 
@@ -32,5 +34,27 @@ public class Board {
                 gameBoard[row][col].setText(" ");
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "ROW=" + ROW +
+                ", COL=" + COL +
+                ", gameBoard=" + Arrays.toString(gameBoard) +
+                ", parentPanel=" + parentPanel +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Board board = (Board) o;
+        return ROW == board.ROW && COL == board.COL && Objects.deepEquals(gameBoard, board.gameBoard) && Objects.equals(parentPanel, board.parentPanel);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ROW, COL, Arrays.deepHashCode(gameBoard), parentPanel);
     }
 }
